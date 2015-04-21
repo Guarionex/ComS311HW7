@@ -98,38 +98,36 @@ public class DirectedGraph<V, E> implements Graph<V, E> {
 
 	@Override
 	public Set<Integer> getVertices() {
-		// TODO Auto-generated method stub
-		return null;
+		return vertices.keySet();
 	}
 
 	@Override
 	public Set<Integer> getEdges() {
-		// TODO Auto-generated method stub
-		return null;
+		return edges.keySet();
 	}
 
 	@Override
 	public E getAttribute(int id) throws IllegalArgumentException {
-		// TODO Auto-generated method stub
-		return null;
+		if(id > numEdges) throw new IllegalArgumentException();
+		return edges.get(id).getEdgeAttribute();
 	}
 
 	@Override
 	public V getData(int id) throws IllegalArgumentException {
-		// TODO Auto-generated method stub
-		return null;
+		if(id > numVertices) throw new IllegalArgumentException();
+		return vertices.get(id).getVertexData();
 	}
 
 	@Override
 	public int getSource(int id) throws IllegalArgumentException {
-		// TODO Auto-generated method stub
-		return 0;
+		if(id > numEdges) throw new IllegalArgumentException();
+		return edges.get(id).getSourceID();
 	}
 
 	@Override
 	public int getTarget(int id) throws IllegalArgumentException {
-		// TODO Auto-generated method stub
-		return 0;
+		if(id > numEdges) throw new IllegalArgumentException();
+		return edges.get(id).getTargetID();
 	}
 
 	@Override
