@@ -1,15 +1,36 @@
 
 public class Edge {
 	
-	int ID;
-	Vertex previous;
-	Vertex next;
+	private int ID;
+	private Vertex previous;
+	private Vertex next;
+	private double weight;
 	
-	Edge(int ID, Vertex previous, Vertex next)
+	public Edge(int ID, Vertex previous, Vertex next, double weight)
 	{
 		this.ID = ID;
 		this.previous = previous;
 		this.next = next;
+		this.weight = weight;
 	}
 
+	public int getID()
+	{
+		return ID;
+	}
+	
+	public Vertex getPrevious()
+	{
+		return previous;
+	}
+	
+	public Vertex getNext()
+	{
+		return next;
+	}
+	
+	public double getWeight()
+	{
+		return weight;
+	}
 }
