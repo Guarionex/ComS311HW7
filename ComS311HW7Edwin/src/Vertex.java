@@ -13,4 +13,19 @@ public class Vertex {
 		this.latitude = latitude;
 	}
 	
+	int getID()
+	{
+		return ID;
+	}
+	
+	double getLongitude()
+	{
+		return longitude;
+	}
+	
+	double getLatitude()
+	{
+		return latitude;
+	}
+	
 }
