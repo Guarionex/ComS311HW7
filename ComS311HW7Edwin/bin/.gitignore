@@ -6,3 +6,5 @@
 /Weighing.class
 /DirectedGraph.class
 /Weights.class
+/DirectedGraph$GraphEdge.class
+/DirectedGraph$GraphVertex.class
