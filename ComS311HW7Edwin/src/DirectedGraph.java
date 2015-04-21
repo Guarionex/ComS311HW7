@@ -12,22 +12,22 @@ public class DirectedGraph<V, E> implements Graph<V, E> {
 	
 	class GraphEdge
 	{
-		private E edgeData;
+		private E edgeAttr;
 		private int sourceID;
 		private int targetID;
 		private int ID;
 		
-		public GraphEdge(E edgeData, int sourceID, int targetID, int ID)
+		public GraphEdge(E edgeAttr, int sourceID, int targetID, int ID)
 		{
-			this.edgeData = edgeData;
+			this.edgeAttr = edgeAttr;
 			this.sourceID = sourceID;
 			this.targetID = targetID;
 			this.ID = ID;
 		}
 		
-		public E getEdge()
+		public E getEdgeAttribute()
 		{
-			return edgeData;
+			return edgeAttr;
 		}
 		
 		public int getSourceID()
@@ -53,12 +53,13 @@ public class DirectedGraph<V, E> implements Graph<V, E> {
 		private int ID;
 		private HashMap<Integer, GraphEdge> edges = new HashMap<Integer, GraphEdge>();
 		
-		public GraphVertex(V vertexData)
+		public GraphVertex(V vertexData, int ID)
 		{
 			this.vertexData = vertexData;
+			this.ID = ID;
 		}
 		
-		public V getData()
+		public V getVertexData()
 		{
 			return vertexData;
 		}
@@ -78,15 +79,21 @@ public class DirectedGraph<V, E> implements Graph<V, E> {
 
 	@Override
 	public int addVertex(V v) {
-		// TODO Auto-generated method stub
-		return 0;
+		GraphVertex newVertex = new GraphVertex(v, numVertices);
+		vertices.put(newVertex.hashCode(), newVertex);
+		numVertices++;
+		return newVertex.hashCode();
 	}
 
 	@Override
-	public int addEdge(int srcID, int targetID, E attr)
-			throws IllegalArgumentException {
-		// TODO Auto-generated method stub
-		return 0;
+	public int addEdge(int srcID, int targetID, E attr) throws IllegalArgumentException {
+		if(srcID > 0 || targetID > 0) throw new IllegalArgumentException();
+		GraphEdge newEdge = new GraphEdge(attr, srcID, targetID, numEdges);
+		GraphVertex sourceVertex = vertices.get(srcID);
+		sourceVertex.addEdge(newEdge);
+		edges.put(newEdge.hashCode(), newEdge);
+		numEdges++;
+		return newEdge.hashCode();
 	}
 
 	@Override
