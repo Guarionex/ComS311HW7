@@ -1,9 +1,9 @@
 
 public class Vertex {
 
-	int ID;
-	double longitude;
-	double latitude;
+	private int ID;
+	private double longitude;
+	private double latitude;
 	
 	
 	Vertex(int ID, double longitude, double latitude)
