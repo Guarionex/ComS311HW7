@@ -51,7 +51,7 @@ public class DirectedGraph<V, E> implements Graph<V, E> {
 	{
 		private V vertexData;
 		private int ID;
-		private HashMap<Integer, GraphEdge> edges = new HashMap<Integer, GraphEdge>();
+		private HashMap<Integer, GraphEdge> vertexEdges = new HashMap<Integer, GraphEdge>();
 		
 		public GraphVertex(V vertexData, int ID)
 		{
@@ -66,7 +66,12 @@ public class DirectedGraph<V, E> implements Graph<V, E> {
 		
 		public void addEdge(GraphEdge edge)
 		{
-			edges.put(edge.hashCode(), edge);
+			vertexEdges.put(edge.hashCode(), edge);
+		}
+		
+		public Set<Integer> getEdges()
+		{
+			return vertexEdges.keySet();
 		}
 		
 		@Override
@@ -132,8 +137,7 @@ public class DirectedGraph<V, E> implements Graph<V, E> {
 
 	@Override
 	public Set<Integer> getEdgesOf(int id) throws IllegalArgumentException {
-		// TODO Auto-generated method stub
-		return null;
+		return vertices.get(id).getEdges();
 	}
 
 }
