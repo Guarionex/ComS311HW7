@@ -4,11 +4,11 @@ import java.util.Set;
 
 public class DirectedGraph<V, E> implements Graph<V, E> {
 	
-	private int numVertices = 0;
-	private int numEdges = 0;
+	private int numVertices;
+	private int numEdges;
 	
-	private HashMap<Integer, GraphVertex> vertices = new HashMap<Integer, GraphVertex>();
-	private HashMap<Integer, GraphEdge> edges = new HashMap<Integer, GraphEdge>();
+	private HashMap<Integer, GraphVertex> vertices;
+	private HashMap<Integer, GraphEdge> edges;
 	
 	class GraphEdge
 	{
@@ -82,6 +82,14 @@ public class DirectedGraph<V, E> implements Graph<V, E> {
 		
 	}
 
+	public DirectedGraph()
+	{
+		numVertices = 0;
+		numEdges = 0;
+		vertices = new HashMap<Integer, GraphVertex>();
+		edges = new HashMap<Integer, GraphEdge>();
+	}
+	
 	@Override
 	public int addVertex(V v) {
 		GraphVertex newVertex = new GraphVertex(v, numVertices);
