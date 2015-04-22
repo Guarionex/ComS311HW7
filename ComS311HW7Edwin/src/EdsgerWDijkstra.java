@@ -101,14 +101,19 @@ public class EdsgerWDijkstra<V, E> implements Dijkstra<V, E> {
 			previous = predecessor.get(previous);
 		}
 		
-		return null;
+		if(predecessor.get(previous) != null && predecessor.get(previous) == previous)
+		{
+			path.add(0, predecessor.get(previous));
+		}
+		
+		return path;
 	}
 
 	@Override
-	public double getCost(int endId) throws IllegalArgumentException,
-			IllegalStateException {
-		// TODO Auto-generated method stub
-		return 0;
+	public double getCost(int endId) throws IllegalArgumentException, IllegalStateException {
+		if(!graph.getVertices().contains(endId)) throw new IllegalArgumentException();
+		if(!pathComputed) throw new IllegalStateException();
+		return distance.get(endId);
 	}
 
 }

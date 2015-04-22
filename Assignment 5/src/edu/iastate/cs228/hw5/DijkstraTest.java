@@ -139,13 +139,13 @@ public class DijkstraTest {
 	public void runTest0() {
 		
 		d.run("A");
-		assertEquals(2, d.getShortestDistance("B"));
-		assertEquals(0, d.getShortestDistance("A"));
+		assertEquals((Integer)2, d.getShortestDistance("B"));
+		assertEquals((Integer)0, d.getShortestDistance("A"));
 		d.run("B");
-		assertEquals(0, d.getShortestDistance("B"));
+		assertEquals((Integer)0, d.getShortestDistance("B"));
 		d.run("C");
-		assertEquals(1, d.getShortestDistance("B"));
-		assertEquals(0, d.getShortestDistance("C"));
+		assertEquals((Integer)1, d.getShortestDistance("B"));
+		assertEquals((Integer)0, d.getShortestDistance("C"));
 	}
 
 	@Test(expected = IllegalArgumentException.class)
@@ -164,27 +164,27 @@ public class DijkstraTest {
 	public void getShortestDistanceTest0() {
 		
 		d.run("A");
-		assertEquals(7, d.getShortestDistance("K"));
-		assertEquals(5, d.getShortestDistance("C"));
-		assertEquals(2, d.getShortestDistance("B"));
-		assertEquals(10, d.getShortestDistance("S"));
-		assertEquals(13, d.getShortestDistance("P"));
-		assertEquals(16, d.getShortestDistance("J"));
+		assertEquals((Integer)7, d.getShortestDistance("K"));
+		assertEquals((Integer)5, d.getShortestDistance("C"));
+		assertEquals((Integer)2, d.getShortestDistance("B"));
+		assertEquals((Integer)10, d.getShortestDistance("S"));
+		assertEquals((Integer)13, d.getShortestDistance("P"));
+		assertEquals((Integer)16, d.getShortestDistance("J"));
 		
 		d2.run("A");
-		assertEquals(12, d2.getShortestDistance("H"));
-		assertEquals(12, d2.getShortestDistance("D"));
+		assertEquals((Integer)12, d2.getShortestDistance("H"));
+		assertEquals((Integer)12, d2.getShortestDistance("D"));
 	}
 
 	@Test
 	//Test distances from W
 	public void getShortestDistanceTest1(){
 		d.run("W");
-		assertEquals(2, d.getShortestDistance("U"));
-		assertEquals(3, d.getShortestDistance("Z"));
-		assertEquals(5, d.getShortestDistance("J"));
-		assertEquals(7, d.getShortestDistance("M"));
-		assertEquals(10, d.getShortestDistance("S"));
+		assertEquals((Integer)2, d.getShortestDistance("U"));
+		assertEquals((Integer)3, d.getShortestDistance("Z"));
+		assertEquals((Integer)5, d.getShortestDistance("J"));
+		assertEquals((Integer)7, d.getShortestDistance("M"));
+		assertEquals((Integer)10, d.getShortestDistance("S"));
 	}
 	@Test
 	// Return Integer.MAX_VALUE if there is no edge connecting the vertices or
@@ -192,23 +192,23 @@ public class DijkstraTest {
 	public void getShortestDistanceTest2() {
 		d.run("a");
 		d2.run("B");
-		assertEquals(Integer.MAX_VALUE, d.getShortestDistance("A"));
-		assertEquals(Integer.MAX_VALUE, d.getShortestDistance("X"));
-		assertEquals(Integer.MAX_VALUE, d.getShortestDistance("B"));
-		assertEquals(Integer.MAX_VALUE, d.getShortestDistance("Q"));
-		assertEquals(Integer.MAX_VALUE, d.getShortestDistance("Quack"));
+		assertEquals((Integer)Integer.MAX_VALUE, d.getShortestDistance("A"));
+		assertEquals((Integer)Integer.MAX_VALUE, d.getShortestDistance("X"));
+		assertEquals((Integer)Integer.MAX_VALUE, d.getShortestDistance("B"));
+		assertEquals((Integer)Integer.MAX_VALUE, d.getShortestDistance("Q"));
+		assertEquals((Integer)Integer.MAX_VALUE, d.getShortestDistance("Quack"));
 		
-		assertEquals(Integer.MAX_VALUE, d2.getShortestDistance("A"));
-		assertEquals(Integer.MAX_VALUE, d2.getShortestDistance("H"));
-		assertEquals(Integer.MAX_VALUE, d2.getShortestDistance("K"));
-		assertEquals(Integer.MAX_VALUE, d2.getShortestDistance("Moo"));
+		assertEquals((Integer)Integer.MAX_VALUE, d2.getShortestDistance("A"));
+		assertEquals((Integer)Integer.MAX_VALUE, d2.getShortestDistance("H"));
+		assertEquals((Integer)Integer.MAX_VALUE, d2.getShortestDistance("K"));
+		assertEquals((Integer)Integer.MAX_VALUE, d2.getShortestDistance("Moo"));
 		d2.run("D");
-		assertEquals(Integer.MAX_VALUE, d2.getShortestDistance("R"));
-		assertEquals(Integer.MAX_VALUE, d2.getShortestDistance("C"));
-		assertEquals(Integer.MAX_VALUE, d2.getShortestDistance("Q"));
+		assertEquals((Integer)Integer.MAX_VALUE, d2.getShortestDistance("R"));
+		assertEquals((Integer)Integer.MAX_VALUE, d2.getShortestDistance("C"));
+		assertEquals((Integer)Integer.MAX_VALUE, d2.getShortestDistance("Q"));
 		d.run("W");
-		assertEquals(Integer.MAX_VALUE, d.getShortestDistance("Woof"));
-		assertEquals(8, d.getShortestDistance("Y"));
+		assertEquals((Integer)Integer.MAX_VALUE, d.getShortestDistance("Woof"));
+		assertEquals((Integer)8, d.getShortestDistance("Y"));
 	}
 	@Test(expected=RuntimeException.class)
 	//If no call to run has been made throw RuntimeException
