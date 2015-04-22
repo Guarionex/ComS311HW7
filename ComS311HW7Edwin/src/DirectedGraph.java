@@ -100,7 +100,7 @@ public class DirectedGraph<V, E> implements Graph<V, E> {
 
 	@Override
 	public int addEdge(int srcID, int targetID, E attr) throws IllegalArgumentException {
-		if(srcID > 0 || targetID > 0) throw new IllegalArgumentException();
+		if(srcID > numVertices || targetID > numVertices) throw new IllegalArgumentException();
 		GraphEdge newEdge = new GraphEdge(attr, srcID, targetID, numEdges);
 		GraphVertex sourceVertex = vertices.get(srcID);
 		sourceVertex.addEdge(newEdge);
