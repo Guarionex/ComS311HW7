@@ -233,6 +233,7 @@ public class DijkstraTest {
 		List<Integer> path2 = digimon.getPath(2);
 		List<Integer> path3 = digimon.getPath(3);
 		List<Integer> path4 = digimon.getPath(4);
+		List<Integer> path10 = digimon.getPath(10);
 		List<Integer> correctPath1 = new ArrayList<Integer>();
 		correctPath1.add(0, 1);
 		correctPath1.add(0, 0);
@@ -249,6 +250,13 @@ public class DijkstraTest {
 		correctPath4.add(0, 4);
 		correctPath4.add(0, 0);
 		assertEquals(correctPath4, path4);
+		List<Integer> correctPath10 = new ArrayList<Integer>();
+		correctPath10.add(0, 10);
+		correctPath10.add(0, 9);
+		correctPath10.add(0, 3);
+		correctPath10.add(0, 0);
+		assertEquals(correctPath10, path10);
+		
 	}
 
 	@Test
@@ -262,10 +270,12 @@ public class DijkstraTest {
 		double cost2 = digimon.getCost(2);
 		double cost3 = digimon.getCost(3);
 		double cost4 = digimon.getCost(4);
+		double cost10 = digimon.getCost(10);
 		assertEquals(0.3377, cost1, 0.0000);
 		assertEquals(0.2381, cost2, 0.0000);
 		assertEquals(0.09703, cost3, 0.0000);
 		assertEquals(0.3220, cost4, 0.0000);
+		assertEquals(1.93284, cost10, 0);
 	}
 
 }
