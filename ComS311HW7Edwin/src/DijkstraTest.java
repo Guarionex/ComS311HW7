@@ -1,5 +1,8 @@
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -124,11 +127,36 @@ public class DijkstraTest {
 		digimon.setStart(0);
 		digimon.setWeighing(weight);
 		digimon.computeShortestPath();
+		List<Integer> path1 = digimon.getPath(1);
+		List<Integer> path2 = digimon.getPath(2);
+		List<Integer> path3 = digimon.getPath(3);
+		List<Integer> path4 = digimon.getPath(4);
+		List<Integer> correctPath1 = new ArrayList<Integer>();
+		correctPath1.add(0, 1);
+		correctPath1.add(0, 0);
+		assertEquals(correctPath1, path1);
+		List<Integer> correctPath2 = new ArrayList<Integer>();
+		correctPath2.add(0, 2);
+		correctPath2.add(0, 0);
+		assertEquals(correctPath2, path2);
+		List<Integer> correctPath3 = new ArrayList<Integer>();
+		correctPath3.add(0, 3);
+		correctPath3.add(0, 0);
+		assertEquals(correctPath3, path3);
+		List<Integer> correctPath4 = new ArrayList<Integer>();
+		correctPath4.add(0, 4);
+		correctPath4.add(0, 0);
+		assertEquals(correctPath4, path4);
 	}
 
 	@Test
 	public void testGetCost() {
-		fail("Not yet implemented");
+		digimon = new EdsgerWDijkstra<Vertex, Edge>();
+		digimon.setGraph(gEdge);
+		digimon.setStart(0);
+		digimon.setWeighing(weight);
+		digimon.computeShortestPath();
+		double cost1 = digimon.getCost(1);
 	}
 
 }
