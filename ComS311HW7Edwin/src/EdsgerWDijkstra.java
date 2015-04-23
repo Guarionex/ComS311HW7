@@ -92,10 +92,10 @@ public class EdsgerWDijkstra<V, E> implements Dijkstra<V, E> {
 		if(!graph.getVertices().contains(endId)) throw new IllegalArgumentException();
 		
 		ArrayList<Integer> path = new ArrayList<Integer>();
-		Integer previous = predecessor.get(endId);
+		Integer previous = endId;//predecessor.get(endId);
 		
-		path.add(0, endId);
-		while(previous != null && previous != null)
+		//path.add(0, previous);
+		while(predecessor.get(previous) != null && predecessor.get(previous) != previous)
 		{
 			path.add(0, previous);
 			previous = predecessor.get(previous);
