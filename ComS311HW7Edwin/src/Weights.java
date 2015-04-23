@@ -1,5 +1,5 @@
 
-public class Weights<E> implements Weighing<E> {
+public class Weights implements Weighing<Edge> {
 	double weight;
 	
 	public Weights()
@@ -8,7 +8,7 @@ public class Weights<E> implements Weighing<E> {
 	}
 	
 	@Override
-	public double weight(E edge) {
+	public double weight(Edge edge) {
 		if(edge.getClass().equals(Edge.class))
 		{
 			weight = ((Edge) edge).getWeight();

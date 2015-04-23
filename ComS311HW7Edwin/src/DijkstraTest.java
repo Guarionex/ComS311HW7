@@ -14,7 +14,7 @@ public class DijkstraTest {
 	public void setup() {
 		gEdge = new DirectedGraph<Vertex, Edge>();
 		digimon = new EdsgerWDijkstra<Vertex, Edge>();
-		weight = new Weights<Edge>();
+		weight = new Weights();
 		Vertex v = new Vertex(0,42.015676,-93.675264);
 		Vertex v1 = new Vertex(1,42.012652,-93.674882);
 		Vertex v2 = new Vertex(2,42.013596,-93.674578);
@@ -49,27 +49,81 @@ public class DijkstraTest {
 	
 	@Test
 	public void testSetGraph() {
-		fail("Not yet implemented");
+		digimon = new EdsgerWDijkstra<Vertex, Edge>();
+		digimon.setGraph(gEdge);
 	}
 
+	@Test(expected = IllegalStateException.class)
+	public void testSetStartException1() {
+		digimon = new EdsgerWDijkstra<Vertex, Edge>();
+		digimon.setStart(0);
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testSetStartException2() {
+		digimon = new EdsgerWDijkstra<Vertex, Edge>();
+		digimon.setGraph(gEdge);
+		digimon.setStart(100);
+	}
+	
 	@Test
 	public void testSetStart() {
-		fail("Not yet implemented");
+		digimon = new EdsgerWDijkstra<Vertex, Edge>();
+		digimon.setGraph(gEdge);
+		digimon.setStart(0);
 	}
 
 	@Test
 	public void testSetWeighing() {
-		fail("Not yet implemented");
+		digimon = new EdsgerWDijkstra<Vertex, Edge>();
+		digimon.setGraph(gEdge);
+		digimon.setStart(0);
+		digimon.setWeighing(weight);
 	}
 
+	@Test(expected = IllegalStateException.class)
+	public void testComputeShortestPathException1() {
+		digimon = new EdsgerWDijkstra<Vertex, Edge>();
+		//digimon.setGraph(gEdge);
+		digimon.setStart(0);
+		digimon.setWeighing(weight);
+		digimon.computeShortestPath();
+	}
+	
+	@Test(expected = IllegalStateException.class)
+	public void testComputeShortestPathException2() {
+		digimon = new EdsgerWDijkstra<Vertex, Edge>();
+		digimon.setGraph(gEdge);
+		//digimon.setStart(0);
+		digimon.setWeighing(weight);
+		digimon.computeShortestPath();
+	}
+	
+	@Test(expected = IllegalStateException.class)
+	public void testComputeShortestPathException3() {
+		digimon = new EdsgerWDijkstra<Vertex, Edge>();
+		digimon.setGraph(gEdge);
+		digimon.setStart(0);
+		//digimon.setWeighing(weight);
+		digimon.computeShortestPath();
+	}
+	
 	@Test
 	public void testComputeShortestPath() {
-		fail("Not yet implemented");
+		digimon = new EdsgerWDijkstra<Vertex, Edge>();
+		digimon.setGraph(gEdge);
+		digimon.setStart(0);
+		digimon.setWeighing(weight);
+		digimon.computeShortestPath();
 	}
 
 	@Test
 	public void testGetPath() {
-		fail("Not yet implemented");
+		digimon = new EdsgerWDijkstra<Vertex, Edge>();
+		digimon.setGraph(gEdge);
+		digimon.setStart(0);
+		digimon.setWeighing(weight);
+		digimon.computeShortestPath();
 	}
 
 	@Test
