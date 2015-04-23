@@ -157,6 +157,13 @@ public class DijkstraTest {
 		digimon.setWeighing(weight);
 		digimon.computeShortestPath();
 		double cost1 = digimon.getCost(1);
+		double cost2 = digimon.getCost(2);
+		double cost3 = digimon.getCost(3);
+		double cost4 = digimon.getCost(4);
+		assertEquals(0.3377, cost1, 0.0000);
+		assertEquals(0.2381, cost2, 0.0000);
+		assertEquals(0.09703, cost3, 0.0000);
+		assertEquals(0.3220, cost4, 0.0000);
 	}
 
 }
