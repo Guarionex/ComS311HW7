@@ -88,7 +88,7 @@ public class CoffeeSolution<V, E> implements CoffeeSolver<V, E> {
 	private void depthFirstSearch(Graph<V, E> graph, int vertex)
 	{
 		vertexState.put(vertex, State.DISCOVERED);
-		for(int e: graph.getEdges())
+		for(int e: graph.getEdgesOf(vertex))
 		{
 			State targetState = this.processEdge(graph, e);
 			if(targetState == State.DISCOVERED)
@@ -112,7 +112,7 @@ public class CoffeeSolution<V, E> implements CoffeeSolver<V, E> {
 	
 	private void processVertexLate(int vertex)
 	{
-		path.add(vertex);
+		path.add(0, vertex);
 	}
 	
 	
