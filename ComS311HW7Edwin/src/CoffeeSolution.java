@@ -78,6 +78,7 @@ public class CoffeeSolution<V, E> implements CoffeeSolver<V, E> {
 	
 	private void initStates(Graph<V,E> graph)
 	{
+		path = new ArrayList<Integer>();
 		isCycle = false;
 		for(Integer v: graph.getVertices())
 		{
