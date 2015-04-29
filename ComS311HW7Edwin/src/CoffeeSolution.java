@@ -13,18 +13,18 @@ public class CoffeeSolution<V, E> implements CoffeeSolver<V, E> {
 	}
 	List<Integer> path;
 	HashMap<Integer, State> vertexState;
-	boolean isCycle = false;
+	boolean isCycle;
 	
 	public CoffeeSolution()
 	{
 		path = new ArrayList<Integer>();
 		vertexState = new HashMap<Integer, State>();
+		isCycle = false;
 	}
 
 	@Override
 	public List<Integer> sortVertices(Graph<V, E> graph) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.topologicalSort(graph, 0);
 	}
 
 	@Override
@@ -37,11 +37,37 @@ public class CoffeeSolution<V, E> implements CoffeeSolver<V, E> {
 	@Override
 	public Collection<List<Integer>> generateValidSortS(Graph<V, E> graph) {
 		Collection<List<Integer>> paths = new HashSet<List<Integer>>();
+		//List<Integer> validPath = new ArrayList<Integer>();
+		for(Integer v: graph.getVertices())
+		{
+			List<Integer> validPath = this.topologicalSort(graph, v);
+			if(validPath == null) return new HashSet<List<Integer>>();
+			else paths.add(validPath);
+		}
+		
 		return paths;
+	}
+	
+	private List<Integer> topologicalSort(Graph<V, E> graph, int vertex)
+	{
+		this.initStates(graph);
+		this.depthFirstSearch(graph, vertex);
+		for(int v: vertexState.keySet())
+		{
+			if(vertexState.get(v) == State.UNDISCOVERED)
+			{
+				this.depthFirstSearch(graph, v);
+			}
+		}
+		if(isCycle) return null;
+		return path;
+		
+		
 	}
 	
 	private void initStates(Graph<V,E> graph)
 	{
+		isCycle = false;
 		for(Integer v: graph.getVertices())
 		{
 			vertexState.put(v, State.UNDISCOVERED);
