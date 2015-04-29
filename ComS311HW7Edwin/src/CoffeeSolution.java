@@ -28,10 +28,21 @@ public class CoffeeSolution<V, E> implements CoffeeSolver<V, E> {
 	}
 
 	@Override
-	public List<Integer> shortestPath(Graph<V, E> graph,
-			List<Integer> locations, Weighing<E> weigh) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Integer> shortestPath(Graph<V, E> graph, List<Integer> locations, Weighing<E> weigh) {
+		List<Integer> completePath = new ArrayList<Integer>();
+		Dijkstra<V, E> digimon = new EdsgerWDijkstra<V, E>();
+		digimon.setGraph(graph);
+		digimon.setWeighing(weigh);
+		
+		completePath.add(locations.get(0));
+		for(int i = 0; i < locations.size() - 1; i++)
+		{
+			digimon.setStart(locations.get(i));
+			digimon.computeShortestPath();
+			completePath.addAll(digimon.getPath(locations.get(i + 1)));
+		}
+		
+		return completePath;
 	}
 
 	@Override
