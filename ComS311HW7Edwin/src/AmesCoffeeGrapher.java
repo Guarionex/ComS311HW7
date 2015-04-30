@@ -35,6 +35,7 @@ public class AmesCoffeeGrapher {
 //		your algorithm must work for an arbitrary dependency graph of
 //		arbitrary size.
 		List<Integer> topo = coffeeSolver.sortVertices(locations);
+		System.out.println("Part 1:");
 		System.out.println("Sorting of the ingredients that statisfies the constraint:");
 		//System.out.println(topo);
 		System.out.println(ingredientToString(topo));
@@ -46,6 +47,7 @@ public class AmesCoffeeGrapher {
 		List<Integer> IDs = getVertexDataID(locations, topo);
 		List<Integer> shortestPath = coffeeSolver.shortestPath(ames,IDs, weight);
 		System.out.println("");
+		System.out.println("Part 2:");
 		System.out.println("Shortest Path:");
 		System.out.println(shortestPath);
 		
@@ -55,15 +57,15 @@ public class AmesCoffeeGrapher {
 		Collection<List<Integer>> validPaths = new HashSet<List<Integer>>();
 		validPaths = coffeeSolver.generateValidSortS(locations);
 		List<Integer> theShortestPath = new ArrayList<Integer>();
-		double shortestPathCost = 0.0;
+		double shortestPathCost = Double.POSITIVE_INFINITY;
 		for(List<Integer> path: validPaths)
 		{
 			List<Integer> Ids = getVertexDataID(locations, path);
 			List<Integer> aPath = coffeeSolver.shortestPath(ames, Ids, weight);
-			double costOfAPath = Double.POSITIVE_INFINITY;
+			double costOfAPath = 0.0;
 			for(int i = 0; i < aPath.size() - 1; i++)
 			{
-				Set<Integer> edges = ames.getEdgesOf(i);
+				Set<Integer> edges = ames.getEdgesOf(aPath.get(i));
 				for(Integer e: edges)
 				{
 					if(ames.getTarget(e) == aPath.get(i + 1))
@@ -79,6 +81,7 @@ public class AmesCoffeeGrapher {
 			}
 		}
 		System.out.println("");
+		System.out.println("Bonus:");
 		System.out.println("THE shortest path is:");
 		System.out.println(theShortestPath);
 		System.out.println("Cost: "+shortestPathCost);
