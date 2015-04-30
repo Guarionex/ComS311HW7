@@ -173,10 +173,10 @@ public class CoffeeSolutionTest {
 //		//Collection<List<Integer>> allTopo = coffee.generateValidSortS(graph);		
 //		//System.out.println(allTopo);
 //		System.out.println("");
-//		Collection<List<Integer>> allTopo2 = coffee.generateValidSortS(graph2);
-//		System.out.println(allTopo2);
-		Collection<List<Integer>> allCoffeeTopo = coffee.generateValidSortS(coffeeGraph);
-		System.out.println(allCoffeeTopo);
+		Collection<List<Integer>> allTopo2 = coffee.generateValidSortS(graph2);
+		System.out.println(allTopo2);
+//		Collection<List<Integer>> allCoffeeTopo = coffee.generateValidSortS(coffeeGraph);
+//		System.out.println(allCoffeeTopo);
 	}
 
 }

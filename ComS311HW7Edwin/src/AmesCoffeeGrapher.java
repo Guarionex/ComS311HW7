@@ -1,5 +1,9 @@
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 public class AmesCoffeeGrapher {
@@ -12,6 +16,8 @@ public class AmesCoffeeGrapher {
 		Graph<Vertex, Edge> ames = null;
 		Graph<Vertex, Edge> locations = null;
 		CoffeeSolver<Vertex, Edge> coffeeSolver = new CoffeeSolution<Vertex, Edge>();
+		Weighing<Edge> weight = new Weights();
+		Dijkstra<Vertex, Edge> digimon = new EdsgerWDijkstra<Vertex, Edge>();
 		
 		try {
 			ames = cartographer.makeGraph();
@@ -37,9 +43,60 @@ public class AmesCoffeeGrapher {
 //		the ingredients and get back to Jim. Once again you expect for Jim
 //		to have this problem in the future and it should work for an arbitrary
 //		ordering of n ingredients.
+		List<Integer> IDs = getVertexDataID(locations, topo);
+		List<Integer> shortestPath = coffeeSolver.shortestPath(ames,IDs, weight);
+		System.out.println("");
+		System.out.println("Shortest Path:");
+		System.out.println(shortestPath);
+		
+//		Bonus: Jim is worried about how long it will take and demands you find the
+//		shortest possible path over all valid orderings of the ingredients and
+//		return them to him.
+		Collection<List<Integer>> validPaths = new HashSet<List<Integer>>();
+		validPaths = coffeeSolver.generateValidSortS(locations);
+		List<Integer> theShortestPath = new ArrayList<Integer>();
+		double shortestPathCost = 0.0;
+		for(List<Integer> path: validPaths)
+		{
+			List<Integer> Ids = getVertexDataID(locations, path);
+			List<Integer> aPath = coffeeSolver.shortestPath(ames, Ids, weight);
+			double costOfAPath = Double.POSITIVE_INFINITY;
+			for(int i = 0; i < aPath.size() - 1; i++)
+			{
+				Set<Integer> edges = ames.getEdgesOf(i);
+				for(Integer e: edges)
+				{
+					if(ames.getTarget(e) == aPath.get(i + 1))
+					{
+						costOfAPath += ames.getAttribute(e).getWeight();
+					}
+				}
+			}
+			if(shortestPathCost > costOfAPath)
+			{
+				shortestPathCost = costOfAPath;
+				theShortestPath = aPath;
+			}
+		}
+		System.out.println("");
+		System.out.println("THE shortest path is:");
+		System.out.println(theShortestPath);
+		System.out.println("Cost: "+shortestPathCost);
 
 
 		
+	}
+	
+	
+	
+	private static List<Integer> getVertexDataID(Graph<Vertex, Edge> graph, List<Integer> graphVertexID)
+	{
+		List<Integer> IDs = new ArrayList<Integer>();
+		for(Integer v: graphVertexID)
+		{
+			IDs.add(graph.getData(v).getID());
+		}
+		return IDs;
 	}
 	
 	private static String ingredientToString(List<Integer> order)

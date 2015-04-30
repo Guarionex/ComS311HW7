@@ -3,6 +3,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 public class CoffeeSolution<V, E> implements CoffeeSolver<V, E> {
@@ -14,6 +15,7 @@ public class CoffeeSolution<V, E> implements CoffeeSolver<V, E> {
 	List<Integer> path;
 	HashMap<Integer, State> vertexState;
 	boolean isCycle;
+	
 	
 	public CoffeeSolution()
 	{
@@ -39,7 +41,7 @@ public class CoffeeSolution<V, E> implements CoffeeSolver<V, E> {
 		{
 			digimon.setStart(locations.get(i));
 			digimon.computeShortestPath();
-			System.out.println(digimon.getPath(locations.get(i + 1)));
+			//System.out.println(digimon.getPath(locations.get(i + 1)));
 			completePath.addAll(digimon.getPath(locations.get(i + 1)));
 			completePath.remove(locations.get(i+1));
 		}
@@ -51,6 +53,7 @@ public class CoffeeSolution<V, E> implements CoffeeSolver<V, E> {
 	public Collection<List<Integer>> generateValidSortS(Graph<V, E> graph) {
 		Collection<List<Integer>> paths = new HashSet<List<Integer>>();
 		//List<Integer> validPath = new ArrayList<Integer>();
+		//int dummyID = this.addDummy(graph, true);
 		for(Integer v: graph.getVertices())
 		{
 			List<Integer> validPath = this.topologicalSort(graph, v);
@@ -63,8 +66,11 @@ public class CoffeeSolution<V, E> implements CoffeeSolver<V, E> {
 	
 	private List<Integer> topologicalSort(Graph<V, E> graph, int vertex)
 	{
+
+		
 		this.initStates(graph);
 		this.depthFirstSearch(graph, vertex);
+		
 		for(int v: vertexState.keySet())
 		{
 			if(vertexState.get(v) == State.UNDISCOVERED)
@@ -116,6 +122,56 @@ public class CoffeeSolution<V, E> implements CoffeeSolver<V, E> {
 	private void processVertexLate(int vertex)
 	{
 		path.add(0, vertex);
+	}
+	
+	private List<Integer> checkMultiEntry(Graph<V, E> graph)
+	{
+		Set<Integer> vertices = graph.getVertices();
+		Set<Integer> edges = graph.getEdges();
+		HashMap<Integer, Boolean> targetVertices = new HashMap<Integer, Boolean>();
+		List<Integer> entryPoints = new ArrayList<Integer>();
+		
+		for(Integer v: vertices)
+		{
+			targetVertices.put(v, false);
+		}
+		for(Integer e: edges)
+		{
+			targetVertices.put(graph.getTarget(e), true);
+		}
+		for(Integer v: targetVertices.keySet())
+		{
+			if(!targetVertices.get(v))
+			{
+				entryPoints.add(v);
+			}
+		}
+		return entryPoints;
+	}
+	
+	private int addDummy(Graph<V, E> graph, boolean point)
+	{
+		int dummyID = -1;
+		if(true)
+		{
+			
+			
+			List<Integer> entryPoints = this.checkMultiEntry(graph);
+			V dummyVertex = null;
+			E dummyEdge = null;
+			if(entryPoints.size() > 1)
+			{
+				
+				dummyID = graph.addVertex(dummyVertex);
+				for(Integer v: entryPoints)
+				{
+					graph.addEdge(dummyID, v, dummyEdge);
+				}
+				this.initStates(graph);
+				this.depthFirstSearch(graph, dummyID);
+			}
+		}
+		return dummyID;
 	}
 	
 	
