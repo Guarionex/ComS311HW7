@@ -1,5 +1,6 @@
 import static org.junit.Assert.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,12 +13,18 @@ public class DijkstraTest {
 	Graph<Vertex, Edge> gEdge;
 	Dijkstra<Vertex, Edge> digimon;
 	Weighing<Edge> weight;
+	Graph<Vertex, Edge> coffee;
+	Graph<Vertex, Edge> ames;
+	GraphGen cart;
 	
 	@Before
 	public void setup() {
 		gEdge = new DirectedGraph<Vertex, Edge>();
 		digimon = new EdsgerWDijkstra<Vertex, Edge>();
 		weight = new Weights();
+		coffee = new DirectedGraph<Vertex, Edge>();
+		ames = new DirectedGraph<Vertex, Edge>();
+		cart = new GraphGen("AmesData.txt");
 		Vertex v = new Vertex(0,42.015676,-93.675264);
 		Vertex v1 = new Vertex(1,42.012652,-93.674882);
 		Vertex v2 = new Vertex(2,42.013596,-93.674578);
@@ -150,6 +157,14 @@ public class DijkstraTest {
 		gEdge.addEdge(8, 9, e52);
 		//gEdge.addEdge(8, 10, e53);
 		gEdge.addEdge(9, 10, e54);
+		
+		try {
+			ames = cart.makeGraph();
+		} catch (IOException e10) {
+			// TODO Auto-generated catch block
+			e10.printStackTrace();
+		}
+		coffee = cart.makeLocationGraph();
 	}
 	
 	@Test
@@ -237,7 +252,10 @@ public class DijkstraTest {
 		List<Integer> correctPath1 = new ArrayList<Integer>();
 		correctPath1.add(0, 1);
 		correctPath1.add(0, 0);
+		//System.out.println(correctPath1);
+		//System.out.println(path1);
 		assertEquals(correctPath1, path1);
+		
 		List<Integer> correctPath2 = new ArrayList<Integer>();
 		correctPath2.add(0, 2);
 		correctPath2.add(0, 0);
@@ -256,6 +274,18 @@ public class DijkstraTest {
 		correctPath10.add(0, 3);
 		correctPath10.add(0, 0);
 		assertEquals(correctPath10, path10);
+		
+	}
+	
+	@Test
+	public void testGetPath2()
+	{
+		digimon = new EdsgerWDijkstra<Vertex, Edge>();
+		digimon.setGraph(ames);
+		digimon.setWeighing(weight);
+		digimon.setStart(2893);
+		digimon.computeShortestPath();
+		System.out.println(digimon.getPath(1055));
 		
 	}
 

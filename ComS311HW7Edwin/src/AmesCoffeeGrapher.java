@@ -29,9 +29,15 @@ public class AmesCoffeeGrapher {
 //		your algorithm must work for an arbitrary dependency graph of
 //		arbitrary size.
 		List<Integer> topo = coffeeSolver.sortVertices(locations);
-		System.out.println("Sorting of the ingredients that statisfies the constraint");
+		System.out.println("Sorting of the ingredients that statisfies the constraint:");
 		//System.out.println(topo);
 		System.out.println(ingredientToString(topo));
+		
+//		Part 2: Given an ordering of ingredients, find the shortest path to collect all
+//		the ingredients and get back to Jim. Once again you expect for Jim
+//		to have this problem in the future and it should work for an arbitrary
+//		ordering of n ingredients.
+
 
 		
 	}

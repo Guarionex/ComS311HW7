@@ -101,7 +101,7 @@ public class EdsgerWDijkstra<V, E> implements Dijkstra<V, E> {
 			previous = predecessor.get(previous);
 		}
 		
-		if(predecessor.get(previous) != null && predecessor.get(previous) == previous)
+		if(predecessor.get(previous) != null && predecessor.get(previous) == previous && !path.contains(previous))
 		{
 			path.add(0, predecessor.get(previous));
 		}

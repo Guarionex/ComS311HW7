@@ -1,5 +1,7 @@
 import static org.junit.Assert.*;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -16,6 +18,8 @@ public class CoffeeSolutionTest {
 	Dijkstra<Vertex, Edge> digimon;
 	Weighing<Edge> weight;
 	CoffeeSolver<Vertex, Edge> coffee;
+	Graph<Vertex, Edge> ames;
+	GraphGen cartographer;
 	
 	
 	@Before
@@ -27,6 +31,8 @@ public class CoffeeSolutionTest {
 		digimon = new EdsgerWDijkstra<Vertex, Edge>();
 		weight = new Weights();
 		coffee = new CoffeeSolution<Vertex, Edge>();
+		ames = new DirectedGraph<Vertex, Edge>();
+		cartographer = new GraphGen("AmesData.txt");
 		
 		Vertex v0 = new Vertex(0, 1, 1);
 		Vertex v1 = new Vertex(1, 1, 1);
@@ -80,14 +86,14 @@ public class CoffeeSolutionTest {
 		graph2.addEdge(1, 3, eB);
 		graph2.addEdge(2, 3, eC);
 		
-		Vertex A = new Vertex(0, 1, 1);
-		Vertex B = new Vertex(1, 1, 1);
-		Vertex C = new Vertex(2, 1, 1);
-		Vertex D = new Vertex(3, 1, 1);
-		Vertex E = new Vertex(4, 1, 1);
-		Vertex F = new Vertex(5, 1, 1);
-		Vertex G = new Vertex(6, 1, 1);
-		Vertex you = new Vertex(7, 1, 1);
+		Vertex A = new Vertex(1055, 42.059112, -93.632995);
+		Vertex B = new Vertex(371, 42.019621, -93.651759);
+		Vertex C = new Vertex(2874, 42.012025, -93.671429);
+		Vertex D = new Vertex(2351, 42.012053, -93.6489);
+		Vertex E = new Vertex(2956, 42.009345, -93.67229);
+		Vertex F = new Vertex(1171, 42.053516, -93.649586);
+		Vertex G = new Vertex(1208, 42.031262, -93.620315);
+		Vertex you = new Vertex(2893, 42.011189, -93.682421);
 		Edge Ab = new Edge(0, A, B, 1);
 		Edge Ae = new Edge(1, A, E, 1);
 		Edge Ag = new Edge(2, A, G, 1);
@@ -124,6 +130,13 @@ public class CoffeeSolutionTest {
 		coffeeGraph.addEdge(6, 7, Fg);
 		coffeeGraph.addEdge(0, 1, youA);
 		
+		try {
+			ames = cartographer.makeGraph();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 
@@ -141,7 +154,16 @@ public class CoffeeSolutionTest {
 
 	@Test
 	public void testShortestPath() {
-		fail("Not yet implemented");
+		List<Integer> vertices = coffee.sortVertices(coffeeGraph);
+		List<Integer> IDs = new ArrayList<Integer>();
+		for(Integer v: vertices)
+		{
+			IDs.add(coffeeGraph.getData(v).getID());
+		}
+		List<Integer> shortestPath = coffee.shortestPath(ames,IDs, weight);
+		System.out.println("");
+		System.out.println("Shortest Path:");
+		System.out.println(shortestPath);
 	}
 
 	@Test

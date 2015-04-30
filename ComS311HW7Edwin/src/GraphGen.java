@@ -45,22 +45,22 @@ public class GraphGen {
 		for(int i = numVertices + 2; i < numVertices + 2 + numEdges; i++)
 		{
 			Edge edge = null;
-			Edge reverseEdge = null;
+			//Edge reverseEdge = null;
 			String[] rawEdge = allLines.get(i).split("[,]");
 			if(rawEdge.length == 3)
 			{
 				edge = new Edge(i - numVertices - 2, graph.getData(Integer.parseInt(rawEdge[0])), graph.getData(Integer.parseInt(rawEdge[1])), Double.parseDouble(rawEdge[2]));
-				reverseEdge = new Edge(-(i - numVertices - 2), edge.getNext(), edge.getPrevious(), edge.getWeight());
+				//reverseEdge = new Edge(-(i - numVertices - 2), edge.getNext(), edge.getPrevious(), edge.getWeight());
 			}
 			else if(rawEdge.length == 4)
 			{
 				edge = new Edge(i - numVertices - 2, graph.getData(Integer.parseInt(rawEdge[0])), graph.getData(Integer.parseInt(rawEdge[1])), Double.parseDouble(rawEdge[2]), rawEdge[3]);
-				reverseEdge = new Edge(-(i - numVertices - 2), edge.getNext(), edge.getPrevious(), edge.getWeight(), rawEdge[3]);
+				//reverseEdge = new Edge(-(i - numVertices - 2), edge.getNext(), edge.getPrevious(), edge.getWeight(), rawEdge[3]);
 			}
-			if(edge != null && reverseEdge != null)
+			if(edge != null /*&& reverseEdge != null*/)
 			{
 				graph.addEdge(edge.getPrevious().getID(), edge.getNext().getID(), edge);
-				graph.addEdge(reverseEdge.getPrevious().getID(), reverseEdge.getNext().getID(), reverseEdge);
+				//graph.addEdge(reverseEdge.getPrevious().getID(), reverseEdge.getNext().getID(), reverseEdge);
 			}
 		}
 		

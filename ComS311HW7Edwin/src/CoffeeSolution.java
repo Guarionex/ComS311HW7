@@ -34,14 +34,16 @@ public class CoffeeSolution<V, E> implements CoffeeSolver<V, E> {
 		digimon.setGraph(graph);
 		digimon.setWeighing(weigh);
 		
-		completePath.add(locations.get(0));
+		//completePath.add(locations.get(0));
 		for(int i = 0; i < locations.size() - 1; i++)
 		{
 			digimon.setStart(locations.get(i));
 			digimon.computeShortestPath();
+			System.out.println(digimon.getPath(locations.get(i + 1)));
 			completePath.addAll(digimon.getPath(locations.get(i + 1)));
+			completePath.remove(locations.get(i+1));
 		}
-		
+		completePath.add(locations.get(locations.size() - 1));
 		return completePath;
 	}
 

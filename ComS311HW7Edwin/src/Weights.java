@@ -9,10 +9,9 @@ public class Weights implements Weighing<Edge> {
 	
 	@Override
 	public double weight(Edge edge) {
-		if(edge.getClass().equals(Edge.class))
-		{
-			weight = ((Edge) edge).getWeight();
-		}
+		
+		weight = edge.getWeight();
+		
 		return weight;
 	}
 
