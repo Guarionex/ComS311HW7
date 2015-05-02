@@ -17,7 +17,7 @@ public class AmesCoffeeGrapher {
 		Graph<Vertex, Edge> locations = null;
 		CoffeeSolver<Vertex, Edge> coffeeSolver = new CoffeeSolution<Vertex, Edge>();
 		Weighing<Edge> weight = new Weights();
-		Dijkstra<Vertex, Edge> digimon = new EdsgerWDijkstra<Vertex, Edge>();
+		//Dijkstra<Vertex, Edge> digimon = new EdsgerWDijkstra<Vertex, Edge>();
 		
 		try {
 			ames = cartographer.makeGraph();

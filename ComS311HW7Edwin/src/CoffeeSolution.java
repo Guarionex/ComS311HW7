@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -60,6 +61,33 @@ public class CoffeeSolution<V, E> implements CoffeeSolver<V, E> {
 			if(validPath == null) return new HashSet<List<Integer>>();
 			else paths.add(validPath);
 		}
+		List<Integer> entries = this.checkMultiPoint(graph, true);
+		List<Integer> exits = this.checkMultiPoint(graph, false);
+		Iterator<List<Integer>> iter = paths.iterator();
+		Collection<List<Integer>> temp = new HashSet<List<Integer>>();
+		while(iter.hasNext())
+		{
+			List<Integer> next = iter.next();
+			for(int i = next.size() - 1; i >0 ; i--)
+			{
+				if(entries.contains(next.get(i)))
+				{
+					List<Integer> tempPath = new ArrayList<Integer>(next);
+					tempPath.set(i - 1, tempPath.set(i, tempPath.get(i - 1)));
+					temp.add(tempPath);
+				}
+			}
+			for(int j = 0; j < next.size() - 2; j++)
+			{
+				if(exits.contains(next.get(j)))
+				{
+					List<Integer> tempPath = new ArrayList<Integer>(next);
+					tempPath.set(j + 1, tempPath.set(j, tempPath.get(j + 1)));
+					temp.add(tempPath);
+				}
+			}
+		}
+		paths.addAll(temp);
 		
 		return paths;
 	}
@@ -124,7 +152,7 @@ public class CoffeeSolution<V, E> implements CoffeeSolver<V, E> {
 		path.add(0, vertex);
 	}
 	
-	private List<Integer> checkMultiEntry(Graph<V, E> graph)
+	private List<Integer> checkMultiPoint(Graph<V, E> graph, boolean entry)
 	{
 		Set<Integer> vertices = graph.getVertices();
 		Set<Integer> edges = graph.getEdges();
@@ -137,7 +165,8 @@ public class CoffeeSolution<V, E> implements CoffeeSolver<V, E> {
 		}
 		for(Integer e: edges)
 		{
-			targetVertices.put(graph.getTarget(e), true);
+			if(entry) targetVertices.put(graph.getTarget(e), true);
+			else if(!entry) targetVertices.put(graph.getSource(e), true);
 		}
 		for(Integer v: targetVertices.keySet())
 		{
@@ -156,7 +185,7 @@ public class CoffeeSolution<V, E> implements CoffeeSolver<V, E> {
 		{
 			
 			
-			List<Integer> entryPoints = this.checkMultiEntry(graph);
+			List<Integer> entryPoints = this.checkMultiPoint(graph, true);
 			V dummyVertex = null;
 			E dummyEdge = null;
 			if(entryPoints.size() > 1)

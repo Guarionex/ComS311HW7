@@ -14,6 +14,7 @@ public class CoffeeSolutionTest {
 	
 	Graph<Vertex, Edge> graph;
 	Graph<Vertex, Edge> graph2;
+	Graph<Vertex, Edge> graph3;
 	Graph<Vertex, Edge> coffeeGraph;
 	Dijkstra<Vertex, Edge> digimon;
 	Weighing<Edge> weight;
@@ -27,6 +28,7 @@ public class CoffeeSolutionTest {
 	{
 		graph = new DirectedGraph<Vertex, Edge>();
 		graph2 = new DirectedGraph<Vertex, Edge>();
+		graph3 = new DirectedGraph<Vertex, Edge>();
 		coffeeGraph = new DirectedGraph<Vertex, Edge>();
 		digimon = new EdsgerWDijkstra<Vertex, Edge>();
 		weight = new Weights();
@@ -85,6 +87,24 @@ public class CoffeeSolutionTest {
 		graph2.addEdge(0, 3, eA2);
 		graph2.addEdge(1, 3, eB);
 		graph2.addEdge(2, 3, eC);
+		
+		Vertex vA2 = new Vertex(0, 1, 1);
+		Vertex vB2 = new Vertex(1, 1, 1);
+		Vertex vC2 = new Vertex(2, 1, 1);
+		Vertex vD2 = new Vertex(3, 1, 1);
+		Edge eA12 = new Edge(0, vA2, vB2, 1);
+		Edge eA22 = new Edge(1, vA2, vD2, 1);
+		Edge eA32 = new Edge(2, vA2, vC2, 1);
+		Edge eB2 = new Edge(3, vB2, vD2, 1);
+		graph3.addVertex(vA);//0
+		graph3.addVertex(vB);//1
+		graph3.addVertex(vC);//2
+		graph3.addVertex(vD);//3
+		graph3.addEdge(0, 1, eA12);
+		graph3.addEdge(0, 2, eA32);
+		graph3.addEdge(0, 3, eA22);
+		graph3.addEdge(1, 3, eB2);
+		
 		
 		Vertex A = new Vertex(1055, 42.059112, -93.632995);
 		Vertex B = new Vertex(371, 42.019621, -93.651759);
@@ -173,10 +193,12 @@ public class CoffeeSolutionTest {
 //		//Collection<List<Integer>> allTopo = coffee.generateValidSortS(graph);		
 //		//System.out.println(allTopo);
 //		System.out.println("");
-//		Collection<List<Integer>> allTopo2 = coffee.generateValidSortS(graph2);
-//		System.out.println(allTopo2);
-		Collection<List<Integer>> allCoffeeTopo = coffee.generateValidSortS(coffeeGraph);
-		System.out.println(allCoffeeTopo);
+		Collection<List<Integer>> allTopo2 = coffee.generateValidSortS(graph2);
+		System.out.println(allTopo2);
+		Collection<List<Integer>> allTopo3 = coffee.generateValidSortS(graph3);
+		System.out.println(allTopo3);
+//		Collection<List<Integer>> allCoffeeTopo = coffee.generateValidSortS(coffeeGraph);
+//		System.out.println(allCoffeeTopo);
 	}
 
 }
