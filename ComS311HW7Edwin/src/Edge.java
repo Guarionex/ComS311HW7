@@ -1,4 +1,8 @@
-
+/**
+ * My Edge class to create an edge object from AmesData.txt
+ * @author Edwin O. Martinez Velazquez
+ *
+ */
 public class Edge {
 	
 	private int ID;

@@ -4,14 +4,20 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.PriorityQueue;
 
-
+/**
+ * Dijkstra Implementation
+ * @author Edwin O. Martinez Velazquez
+ *
+ * @param <V> Vertex
+ * @param <E> Edge
+ */
 public class EdsgerWDijkstra<V, E> implements Dijkstra<V, E> {
 
 	private Graph<V, E> graph = null;
 	private int startVertex = -1;
 	private Weighing<E> weighing = null;
 	private HashMap<Integer, Double> distance;
-	private HashMap<Integer, Integer> predecessor;
+	private HashMap<Integer, Integer> predecessor; //Keeps track of path
 	private HashSet<Integer> vertexSet;
 	private PriorityQueue<Integer> vertexQueue;
 	private boolean pathComputed = false;

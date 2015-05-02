@@ -1,4 +1,8 @@
-
+/**
+ * Vertex class made to stor AmesData.txt vertices
+ * @author Guarionex
+ *
+ */
 public class Vertex {
 
 	private int ID;

@@ -4,7 +4,12 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
-
+/**
+ * Creates a graph by reading AmesData.txt (or any file specified in the constructor, so long as it has the correct formating)
+ * Also makes ingredients graphs
+ * @author Edwin O. Martinez Velazquez
+ *
+ */
 public class GraphGen {
 	
 	File file;
@@ -24,7 +29,11 @@ public class GraphGen {
 		graph = new DirectedGraph<Vertex, Edge>();
 		
 	}
-	
+	/**
+	 * Makes Ames graph
+	 * @return
+	 * @throws IOException
+	 */
 	public Graph<Vertex, Edge> makeGraph() throws IOException
 	{
 		//Graph<Vertex, Edge> graph = new DirectedGraph<Vertex, Edge>();
@@ -63,7 +72,10 @@ public class GraphGen {
 		
 		return graph;
 	}
-	
+	/**
+	 * Makes Ingredient graph
+	 * @return
+	 */
 	public Graph<Vertex, Edge> makeLocationGraph()
 	{
 		Graph<Vertex, Edge> locations = new DirectedGraph<Vertex, Edge>();

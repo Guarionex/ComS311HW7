@@ -5,11 +5,18 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-
+/**
+ * Main Program that solves the HW problems
+ * @author Edwin O. Martinez Velazquez
+ *
+ */
 public class AmesCoffeeGrapher {
 
 	
-	
+	/**
+	 * Main Method that solves the HW problems
+	 * @param args
+	 */
 	public static void main(String[] args)
 	{
 		GraphGen cartographer = new GraphGen("AmesData.txt");
@@ -91,7 +98,12 @@ public class AmesCoffeeGrapher {
 	}
 	
 	
-	
+	/**
+	 * Translates the ingredient graph's vertices into AmesData.txt vertices
+	 * @param graph graph of ingredient locations
+	 * @param graphVertexID topological sort of ingredient graph
+	 * @return List of AmesData.txt vertices
+	 */
 	private static List<Integer> getVertexDataID(Graph<Vertex, Edge> graph, List<Integer> graphVertexID)
 	{
 		List<Integer> IDs = new ArrayList<Integer>();
@@ -101,7 +113,11 @@ public class AmesCoffeeGrapher {
 		}
 		return IDs;
 	}
-	
+	/**
+	 * Prints out a better representation of the ingredient sorted list
+	 * @param order list of ingredients in topological sort
+	 * @return String representation of the list
+	 */
 	private static String ingredientToString(List<Integer> order)
 	{
 		String sortOrder = "";

@@ -1,7 +1,13 @@
 import java.util.HashMap;
 import java.util.Set;
 
-
+/**
+ * Graph Implementation
+ * @author Edwin O. Martinez Velazquez
+ *
+ * @param <V> Vertex
+ * @param <E> Edge
+ */
 public class DirectedGraph<V, E> implements Graph<V, E> {
 	
 	private int numVertices;
@@ -9,7 +15,11 @@ public class DirectedGraph<V, E> implements Graph<V, E> {
 	
 	private HashMap<Integer, GraphVertex> vertices;
 	private HashMap<Integer, GraphEdge> edges;
-	
+	/**
+	 * Internal Edge class
+	 * @author Edwin O. Martinez Velazquez
+	 *
+	 */
 	class GraphEdge
 	{
 		private E edgeAttr;
@@ -46,7 +56,11 @@ public class DirectedGraph<V, E> implements Graph<V, E> {
 			return ID;
 		}
 	}
-	
+	/**
+	 * Internal Vertex class
+	 * @author Edwin O. Martinez Velazquez
+	 *
+	 */
 	class GraphVertex
 	{
 		private V vertexData;
